@@ -1,3 +1,3 @@
 export const config = {
-    eventsAPI: window?._env?.EVENTS_API
+    eventsAPI: import.meta.env.VITE_EVENTS_API
 };
