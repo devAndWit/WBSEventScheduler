@@ -1,6 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./Layout/Home";
 import { useAuth } from "./context/AuthProvider";
+import Home from "./Layout/Home";
+import SignIn from "./Layout/SignIn";
+import SignUp from "./Layout/SignUp";
+import NotFound from "./Layout/SignUp";
 import "./App.css";
 
 function App() {
@@ -11,17 +14,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}>
           <Route index element={<h2>HOMEPAGE</h2>} />
-          <Route path="login" element={<h2>Login Page</h2>} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
 
-          {/* Protected Route */}
-          <Route
-            path="dashboard"
-            element={
-              isAuthenticated ? <h2>Dashboard</h2> : <h2>Access Denied</h2>
-            }
-          />
           {/* NOT FOUND */}
-          <Route path="*" element={<h2>Not Found</h2>} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>
