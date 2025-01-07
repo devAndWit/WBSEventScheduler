@@ -30,15 +30,11 @@ function App() {
         element={isAuthenticated ? <Home /> : <EventCard />}
       />
 
-      {/* <Route
-        path="/eventdetail"
-        element={isAuthenticated ? <Home /> : <EventDetail />}
-      />
-
+      {/*FOr TEsT*/}
       <Route
         path="/eventcreate"
         element={isAuthenticated ? <Home /> : <EventCreate />}
-      /> */}
+      />
 
       <Route
         path="/events/create"

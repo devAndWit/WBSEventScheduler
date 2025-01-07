@@ -6,9 +6,12 @@ const AppContext = createContext();
 // Context provider
 export const AppProvider = ({ children }) => {
   const [currentView, setCurrentView] = useState("events"); // Default is 'events'
+  const [currentEvent, setCurrentEvent] = useState(null);
 
   return (
-    <AppContext.Provider value={{ currentView, setCurrentView }}>
+    <AppContext.Provider
+      value={{ currentView, setCurrentView, currentEvent, setCurrentEvent }}
+    >
       {children}
     </AppContext.Provider>
   );

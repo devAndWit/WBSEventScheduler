@@ -10,19 +10,30 @@ const Header = () => {
 
   return (
     <header className="p-4 bg-blue-500 text-white flex justify-between items-center">
-      <h1 className="text-2xl font-bold">Event Scheduler</h1>
+      <img
+        src="src\asserts\logo_event_scheduler.png"
+        alt="Logo"
+        className="w-10 h-10 "
+      />
+      <h1 className="text-3xl font-bold mr-60">Event Scheduler</h1>
       <div>
+        <button
+          onClick={() => setCurrentView("events")}
+          className="px-4 py-2  border border-white bg-transparent  rounded-lg mr-2"
+        >
+          Home
+        </button>
         {!isAuthenticated ? (
           <>
             <button
               onClick={() => setCurrentView("login")}
-              className="px-4 py-2 bg-gray-700 rounded-lg mr-2"
+              className="px-4 py-2 bg-transparent  border border-white rounded-lg mr-2"
             >
               Login
             </button>
             <button
               onClick={() => setCurrentView("signup")}
-              className="px-4 py-2 bg-gray-700 rounded-lg"
+              className="px-4 py-2  border border-white bg-transparent  rounded-lg"
             >
               Sign Up
             </button>
@@ -31,13 +42,13 @@ const Header = () => {
           <>
             <button
               onClick={() => setCurrentView("create-event")}
-              className="px-4 py-2 bg-green-600 rounded-lg mr-2"
+              className="px-4 py-2   border border-white bg-transparent rounded-lg mr-2"
             >
               Create Event
             </button>
             <button
               onClick={logout}
-              className="px-4 py-2 bg-red-600 rounded-lg"
+              className="px-4 py-2   border border-white bg-transparent rounded-lg"
             >
               Logout
             </button>

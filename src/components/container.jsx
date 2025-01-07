@@ -4,6 +4,7 @@ import { useAppContext } from "../context/AppContext";
 import SignIn from "../Layout/SignIn";
 import SignUp from "../Layout/SignUp";
 import EventContainer from "./events-container";
+import EventDetails from "./event-detail";
 
 const Container = () => {
   const { currentView } = useAppContext();
@@ -13,6 +14,8 @@ const Container = () => {
       return <SignIn />;
     case "signup":
       return <SignUp />;
+    case "details":
+      return <EventDetails />;
     case "events":
     default:
       return <EventContainer />;
