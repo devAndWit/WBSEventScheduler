@@ -23,7 +23,7 @@ const EventCreate = () => {
   //   };
 
   return (
-    <div className="w-full h-screen flex justify-center items-center bg-gray-200">
+    <div className="w-full flex justify-center items-center pt-10">
       <div className="w-96 bg-orange-500 rounded-lg p-4">
         <div className="text-white font-bold text-sm mb-4">Create Event</div>
         <form /*onSubmit={handleSubmit}*/ className="space-y-4">

@@ -2,15 +2,15 @@
 import React from "react";
 import Container from "../components/container";
 import Header from "../components/Header";
-import Footer from "../components/footer";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div>
       <Header />
-      <main className="flex-grow max-h-screen">
-        <Container />
-      </main>
+
+      <Container />
+
       <Footer />
     </div>
   );
