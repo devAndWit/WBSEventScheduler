@@ -1,7 +1,7 @@
 // components/event-container.jsx
 import React, { useEffect, useState } from "react";
-import { fetchEvents } from "../services/api";
 import EventCard from "./event-cards";
+import { getEvents } from "../api/eventsAPI";
 
 const EventContainer = () => {
   const [events, setEvents] = useState([]);
@@ -9,10 +9,10 @@ const EventContainer = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getEvents = async () => {
+    const fetchEvents = async () => {
       try {
         setLoading(true);
-        const data = await fetchEvents(1, 10); // Default: page 1, limit 10
+        const data = await getEvents(1, 10); // Default: page 1, limit 10
         setEvents(data.results);
       } catch (err) {
         setError(err.message);
@@ -21,14 +21,14 @@ const EventContainer = () => {
       }
     };
 
-    getEvents();
+    fetchEvents();
   }, []);
 
   if (loading) return <p>Loading events...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-4 p-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-20 p-20 ">
       {events.map((event) => (
         <EventCard key={event.id} event={event} />
       ))}
