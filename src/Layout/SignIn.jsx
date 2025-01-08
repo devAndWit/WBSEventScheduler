@@ -9,15 +9,27 @@ const SignIn = () => {
   const [formData, setFormData] = useState({
     email: {
       text: "",
-      isError: false,
+      isError: true,
       type: "email",
     },
     password: {
       text: "",
-      isError: false,
+      isError: true,
       type: "password",
     },
   });
+
+  useEffect(() => {
+    console.log("isError in Emaildata: ", formData.email.isError);
+    console.log("isError in Passworddata: ", formData.password.isError);
+    if (
+      formData.email.isError === false &&
+      formData.password.isError === false
+    ) {
+      console.log("send request to API");
+    }
+    return;
+  }, [formData.email.isError, formData.password.isError]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -42,23 +54,11 @@ const SignIn = () => {
   };
 
   const handleSubmit = (event) => {
-    console.log("handleSubmit");
     event.preventDefault();
     validateData();
-    console.log(formData);
-
-    if (
-      formData.email.isError === false &&
-      formData.password.isError === false
-    ) {
-      console.log("send request to API");
-    }
-    return;
   };
 
   const validateData = () => {
-    console.log("validateData");
-
     const emailValid =
       Validation.validateRequired(formData.email.text) &&
       Validation.validateEmail(formData.email.text);
@@ -67,11 +67,8 @@ const SignIn = () => {
       Validation.validateRequired(formData.password.text) &&
       Validation.validatePassword(formData.password.text);
 
-    console.log("emailValid", !emailValid);
-    console.log("passwordValid", !passwordValid);
-
-    setError("email", true);
-    setError("password", true);
+    setError("email", !emailValid);
+    setError("password", !passwordValid);
   };
 
   return (
