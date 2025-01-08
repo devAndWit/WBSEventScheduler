@@ -3,7 +3,7 @@ import { useAuth } from "./context/AuthProvider";
 import Home from "./Layout/Home";
 import SignIn from "./Layout/SignIn";
 import SignUp from "./Layout/SignUp";
-import NotFound from "./Layout/SignUp";
+import NotFound from "./Layout/NotFound";
 import "./App.css";
 
 function App() {
