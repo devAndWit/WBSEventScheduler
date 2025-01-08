@@ -1,58 +1,61 @@
-// header.jsx
-import React from "react";
+import { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
-import { useAppContext } from "../context/AppContext";
+import logo from "../assets/logo_event_scheduler.png";
 
 const Header = () => {
-  const { setCurrentView } = useAppContext();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, login, logout } = useAuth();
 
   return (
-    <header className="p-4 bg-blue-500 text-white flex justify-between items-center">
-      <img
-        src="src\asserts\logo_event_scheduler.png"
-        alt="Logo"
-        className="w-10 h-10 "
-      />
-      <h1 className="text-3xl font-bold">Event Scheduler</h1>
-      <div>
-        <button
-          onClick={() => setCurrentView("events")}
-          className="px-4 py-2  border border-white bg-transparent  rounded-lg mr-2"
-        >
-          Home
-        </button>
-        {!isAuthenticated ? (
-          <>
-            <button
-              onClick={() => setCurrentView("login")}
-              className="px-4 py-2 bg-transparent  border border-white rounded-lg mr-2"
-            >
-              Login
-            </button>
-            <button
-              onClick={() => setCurrentView("signup")}
-              className="px-4 py-2  border border-white bg-transparent  rounded-lg"
-            >
-              Sign Up
-            </button>
-          </>
-        ) : (
-          <>
-            <button
-              onClick={() => setCurrentView("create-event")}
-              className="px-4 py-2   border border-white bg-transparent rounded-lg mr-2"
-            >
-              Create Event
-            </button>
-            <button
-              onClick={logout}
-              className="px-4 py-2   border border-white bg-transparent rounded-lg"
-            >
-              Logout
-            </button>
-          </>
-        )}
+    <header className="flex bg-slate-400 p-4">
+      <div className="flex w-full items-center">
+        <img src={logo} alt="website logo" className="block w-12 h-12" />
+        <h1 className="text-2xl px-4 align-middle">Event Scheduler</h1>
+      </div>
+      <div className="flex w-full items-center justify-end">
+        <nav className="">
+          <ul className="flex w-full items-center">
+            {isAuthenticated ? (
+              <>
+                <li className="mx-4">
+                  <Link
+                    className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
+                    to="/createEvent"
+                  >
+                    Create Event
+                  </Link>
+                </li>
+                <li className="">
+                  <Link
+                    className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
+                    to="/logout"
+                  >
+                    Logout
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="mx-4">
+                  <Link
+                    className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
+                    to="/signin"
+                  >
+                    SignIn
+                  </Link>
+                </li>
+                <li className="">
+                  <Link
+                    className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
+                    to="/signup"
+                  >
+                    SignUp
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
       </div>
     </header>
   );
