@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import { Validation } from "../functions/validation";
+import { userLogIn } from "../api/authAPI"; // Import the userLogIn function
 
 const SignIn = () => {
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, login } = useAuth(); // Assuming login updates auth context
 
   const [formData, setFormData] = useState({
     email: {
@@ -26,9 +27,8 @@ const SignIn = () => {
       formData.email.isError === false &&
       formData.password.isError === false
     ) {
-      console.log("send request to API");
+      console.log("Ready to send request to API");
     }
-    return;
   }, [formData.email.isError, formData.password.isError]);
 
   const handleChange = (event) => {
@@ -53,9 +53,23 @@ const SignIn = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    validateData();
+    if (validateData()) {
+      try {
+        const response = await userLogIn(
+          formData.email.text,
+          formData.password.text
+        );
+        if (response) {
+          login(response.token); // Assuming `login` updates auth context
+          alert("Login successful!");
+        }
+      } catch (error) {
+        console.error("Login failed:", error);
+        alert("Login failed. Please check your credentials and try again.");
+      }
+    }
   };
 
   const validateData = () => {
@@ -69,13 +83,15 @@ const SignIn = () => {
 
     setError("email", !emailValid);
     setError("password", !passwordValid);
+
+    return emailValid && passwordValid;
   };
 
   return (
     <>
       <main className="mb-10 relative py-5 ">
         {!isAuthenticated ? (
-          <form action="" onSubmit={handleSubmit} className="">
+          <form onSubmit={handleSubmit} className="">
             <div className="max-w-[500px] bg-slate-400 m-auto p-4 rounded-lg shadow-2xl">
               <h2 className="text-2xl text-center">Login</h2>
               <div className="flex mt-4">
@@ -85,8 +101,8 @@ const SignIn = () => {
                 <input
                   id="idEmail"
                   name="email"
-                  placeholder="EMail"
-                  value={formData.email.text}
+                  placeholder="Email"
+                  value={formData.email.text || "user@example.com"}
                   onChange={handleChange}
                   type="text"
                   className="w-full rounded-lg p-2 focus:outline-none active:outline-none border-none antialiased"
@@ -100,7 +116,7 @@ const SignIn = () => {
                 <input
                   id="idPassword"
                   name="password"
-                  value={formData.password.text}
+                  value={formData.password.text || "password123"}
                   onChange={handleChange}
                   placeholder="Password"
                   type="password"

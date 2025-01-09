@@ -28,7 +28,7 @@ const Container = () => {
     case "create":
       return <EventCreate />;
     case "logout":
-      return <PrintInContainer />;
+      return <EventContainer />;
     case "events":
     default:
       return <EventContainer />;

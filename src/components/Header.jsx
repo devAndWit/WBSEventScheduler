@@ -17,7 +17,7 @@ const Header = () => {
       <div className="flex w-full items-center justify-end">
         <nav className="">
           <ul className="flex w-full items-center">
-            <li className="">
+            {/* <li className="">
               <botton
                 onClick={() => setCurrentView("logout")}
                 className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
@@ -32,7 +32,7 @@ const Header = () => {
               >
                 Event Create for Test
               </button>
-            </li>
+            </li> */}
             <li className="mx-4">
               <button
                 onClick={() => setCurrentView("events")}
