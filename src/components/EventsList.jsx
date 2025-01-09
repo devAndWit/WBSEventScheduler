@@ -14,11 +14,7 @@ const EventContainer = () => {
       try {
         setIsLoading(true);
         const data = await getUpcomingEventsList(); // Default: page 1, limit 10
-<<<<<<< HEAD
-        console.log(data);
-=======
         console.log(`Upcoming Events ${data}`);
->>>>>>> b1af9fca5d4b618faec354d92bb554d5120298af
         setEvents(data);
       } catch (err) {
         setError(err.message);
