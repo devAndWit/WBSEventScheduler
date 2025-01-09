@@ -6,24 +6,39 @@ const EventCard = (event) => {
 
   return (
     <Link to={`/eventcard/${id}`}>
-      <div className="w-60 bg-orange-500 rounded-lg p-3">
+      <div
+        className="
+        w-60
+        bg-[#EE8F00]
+        rounded-2xl 
+        p-6 
+        mx-auto 
+        transition 
+        duration-300 
+        ease-in-out 
+        transform 
+        hover:scale-110 
+        "
+      >
         {/* Event Date */}
-        <div className="bg-white p-4 rounded-md mb-1 h-16">
-          <p className="text-center text-gray-800">
-            {new Date(date).toLocaleString() || "N/A"}
+        <div className="bg-white p-4 rounded-2xl mb-2 h-16">
+          <p className="text-center ">
+            {new Date(date).toLocaleString("de-DE", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            }) || "N/A"}
           </p>
         </div>
 
         {/* Event Title */}
-        <div className="bg-white p-4 rounded-md mb-1 h-16">
-          <p className="text-center text-gray-800">{title || "Untitled"}</p>
+        <div className="bg-white p-4 rounded-2xl mb-2 h-16">
+          <p className="text-center ">{title || "Untitled"}</p>
         </div>
 
         {/* Event Location */}
-        <div className="bg-white p-4 rounded-md h-20">
-          <p className="text-center text-gray-800">
-            {location || "Not specified"}
-          </p>
+        <div className="bg-white p-4 rounded-2xl h-20">
+          <p className="text-center ">{location || "Not specified"}</p>
         </div>
       </div>
     </Link>

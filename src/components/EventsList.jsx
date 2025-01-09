@@ -31,7 +31,7 @@ const EventContainer = () => {
   return isLoading ? (
     <Spinner />
   ) : (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-20 p-10 ">
+    <div className="flex flex-wrap justify-center gap-10 p-10 mx-auto">
       {events ? (
         events.map((event) => <EventCard key={event.id} event={event} />)
       ) : (
