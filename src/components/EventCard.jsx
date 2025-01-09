@@ -6,7 +6,11 @@ const EventCard = (event) => {
 
   return (
     <Link to={`/eventcard/${id}`}>
+<<<<<<< HEAD
       <div className="w-60 bg-orange-500 rounded-lg p-3 ">
+=======
+      <div className="w-60 bg-orange-500 rounded-lg p-3">
+>>>>>>> b1af9fca5d4b618faec354d92bb554d5120298af
         {/* Event Date */}
         <div className="bg-white p-4 rounded-md mb-1 h-16">
           <p className="text-center text-gray-800">
