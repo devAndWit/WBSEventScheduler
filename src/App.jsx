@@ -12,7 +12,11 @@ import ContentContainer from "./components/ContentContainer.jsx";
 
 function App() {
   const { isAuthenticated } = useAuth();
+<<<<<<< HEAD
 Math.random()
+=======
+
+>>>>>>> 2a34ff3cbaafbf88a7edae0ac0d3d428da79fe8f
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
