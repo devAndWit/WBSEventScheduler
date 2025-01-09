@@ -1,26 +1,5 @@
-// event-create.jsx
-import React, { useState } from "react";
 
 const EventCreate = () => {
-  //   const [formData, setFormData] = useState({
-  //     title: "",
-  //     date: "",
-  //     location: "",
-  //   });
-
-  //   const handleChange = (event) => {
-  //     const { name, value } = event.target;
-  //     setFormData((prevData) => ({
-  //       ...prevData,
-  //       [name]: value,
-  //     }));
-  //   };
-
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     console.log("Creating Event:", formData);
-  //     // Add API call for event creation
-  //   };
 
   return (
     <div className="w-full flex justify-center items-center pt-10">

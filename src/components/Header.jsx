@@ -1,12 +1,9 @@
-import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
-import { useAppContext } from "../context/AppContext";
 import logo from "../assets/logo_event_scheduler.png";
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
-  const { isAuthenticated, login, logout } = useAuth();
-  const { setCurrentView } = useAppContext();
+  const { isAuthenticated, logout } = useAuth();
 
   return (
     <header className="flex bg-slate-400 p-4">
@@ -17,66 +14,46 @@ const Header = () => {
       <div className="flex w-full items-center justify-end">
         <nav className="">
           <ul className="flex w-full items-center">
-            {/* <li className="">
-              <botton
-                onClick={() => setCurrentView("logout")}
-                className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
-              >
-                Logout for Test
-              </botton>
-            </li>
             <li className="mx-4">
               <button
-                onClick={() => setCurrentView("create")}
                 className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
               >
-                Event Create for Test
-              </button>
-            </li> */}
-            <li className="mx-4">
-              <button
-                onClick={() => setCurrentView("events")}
-                className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
-              >
-                Home
+                  <NavLink to='/'>Home</NavLink>
               </button>
             </li>
             {isAuthenticated ? (
               <>
                 <li className="mx-4">
                   <button
-                    onClick={() => setCurrentView("create")}
                     className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
                   >
-                    Create Event
+                      <NavLink to='eventcreate'>Create Event</NavLink>
                   </button>
                 </li>
                 <li className="">
-                  <botton
-                    onClick={() => setCurrentView("logout")}
+                  <button
+                      onClick={logout}
                     className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
                   >
-                    Logout
-                  </botton>
+                      <NavLink to='/'>Logout</NavLink>
+                  </button>
                 </li>
               </>
             ) : (
               <>
                 <li className="mx-4">
-                  <botton
-                    onClick={() => setCurrentView("login")}
+                  <button
                     className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
                   >
-                    SignIn
-                  </botton>
+                      <NavLink to='signin'>SignIn</NavLink>
+                  </button>
                 </li>
                 <li className="">
-                  <botton
-                    onClick={() => setCurrentView("signup")}
+                  <button
                     className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
                   >
-                    SignUp
-                  </botton>
+                      <NavLink to='signup'>SignUp</NavLink>
+                  </button>
                 </li>
               </>
             )}

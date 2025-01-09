@@ -1,6 +1,4 @@
-// Home.jsx
-import React from "react";
-import Container from "../components/container";
+import ContentContainer from "../components/ContentContainer.jsx";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -9,7 +7,7 @@ const Home = () => {
     <div>
       <Header />
 
-      <Container />
+      <ContentContainer />
 
       <Footer />
     </div>

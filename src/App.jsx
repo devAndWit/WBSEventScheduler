@@ -1,55 +1,41 @@
-// app.jsx
-import { Routes, Route } from "react-router-dom";
-import { useAppContext } from "./context/AppContext";
-import { useAuth } from "./context/AuthProvider";
-import Home from "./Layout/Home";
-import SignIn from "./Layout/SignIn";
-import SignUp from "./Layout/SignUp";
-import NotFound from "./Layout/NotFound";
-import EventCreate from "./components/event-create";
-import EventDetail from "./components/event-detail";
-//Test
-import EventCard from "./components/event-cards";
+import {Routes, Route} from "react-router-dom";
+import {useAuth} from "./context/AuthProvider";
+import SignIn from "./components/SignIn.jsx";
+import SignUp from "./components/SignUp.jsx";
+import NotFound from "./components/NotFound.jsx";
+import EventCreate from "./components/EventCreate.jsx";
+import EventDetail from "./components/EventDetail.jsx";
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+import EventsList from "./components/EventsList.jsx";
+import ContentContainer from "./components/ContentContainer.jsx";
 
 function App() {
-  const { currentView, setCurrentView } = useAppContext();
-  const { isAuthenticated } = useAuth();
+    const {isAuthenticated} = useAuth();
 
-  return (
-    <Routes>
-      {/* HomePage*/}
-      <Route path="/" element={<Home />} />
-
-      <Route path="/signin" element={isAuthenticated ? <Home /> : <SignIn />} />
-
-      <Route path="/signup" element={isAuthenticated ? <Home /> : <SignUp />} />
-
-      {/* TEST*/}
-      <Route
-        path="/eventcard"
-        element={isAuthenticated ? <Home /> : <EventCard />}
-      />
-
-      {/*FOr TEsT*/}
-      <Route
-        path="/eventcreate"
-        element={isAuthenticated ? <Home /> : <EventCreate />}
-      />
-
-      <Route
-        path="/events/create"
-        element={isAuthenticated ? <EventCreate /> : <EventCreate />}
-      />
-
-      <Route
-        path="/events/:id"
-        element={isAuthenticated ? <EventDetail /> : <EventDetail />}
-      />
-
-      {/* 404 Not Found */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
+    return (
+        <div className="flex flex-col min-h-screen">
+            <Header/>
+            <ContentContainer>
+                <Routes>
+                    <Route path="/" element={<EventsList/>}/>
+                    <Route path="signin" element={isAuthenticated ? <EventsList/> : <SignIn/>}/>
+                    <Route path="signup" element={isAuthenticated ? <EventsList/> : <SignUp/>}/>
+                    <Route
+                        path="eventcard/:eventId"
+                        element={isAuthenticated ? <EventsList/> : <EventDetail/>}
+                    />
+                    <Route
+                        path="eventcreate"
+                        element={isAuthenticated ? <EventsList/> : <EventCreate/>}
+                    />
+                    {/* 404 Not Found */}
+                    <Route path="*" element={<NotFound/>}/>
+                </Routes>
+            </ContentContainer>
+            <Footer/>
+        </div>
+    );
 }
 
 export default App;
