@@ -1,17 +1,16 @@
-import { Link, Outlet } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
+import ContentContainer from "../components/ContentContainer.jsx";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Home = () => {
-  const { isAuthenticated, login, logout } = useAuth();
-
   return (
-    <>
+    <div>
       <Header />
-      <Outlet />
+
+      <ContentContainer />
+
       <Footer />
-    </>
+    </div>
   );
 };
 

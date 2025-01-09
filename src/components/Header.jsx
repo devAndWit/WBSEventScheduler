@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import logo from "../assets/logo_event_scheduler.png";
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
   return (
     <header className="flex bg-slate-400 p-4">
@@ -15,42 +14,46 @@ const Header = () => {
       <div className="flex w-full items-center justify-end">
         <nav className="">
           <ul className="flex w-full items-center">
+            <li className="mx-4">
+              <button
+                className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
+              >
+                  <NavLink to='/'>Home</NavLink>
+              </button>
+            </li>
             {isAuthenticated ? (
               <>
                 <li className="mx-4">
-                  <Link
+                  <button
                     className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
-                    to="/createEvent"
                   >
-                    Create Event
-                  </Link>
+                      <NavLink to='eventcreate'>Create Event</NavLink>
+                  </button>
                 </li>
                 <li className="">
-                  <Link
+                  <button
+                      onClick={logout}
                     className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
-                    to="/logout"
                   >
-                    Logout
-                  </Link>
+                      <NavLink to='/'>Logout</NavLink>
+                  </button>
                 </li>
               </>
             ) : (
               <>
                 <li className="mx-4">
-                  <Link
+                  <button
                     className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
-                    to="/signin"
                   >
-                    SignIn
-                  </Link>
+                      <NavLink to='signin'>SignIn</NavLink>
+                  </button>
                 </li>
                 <li className="">
-                  <Link
+                  <button
                     className="block bg-cyan-700 px-4 py-2 rounded-xl text-white text-center"
-                    to="/signup"
                   >
-                    SignUp
-                  </Link>
+                      <NavLink to='signup'>SignUp</NavLink>
+                  </button>
                 </li>
               </>
             )}
