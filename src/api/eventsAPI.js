@@ -82,7 +82,8 @@ export async function getUpcomingEventsList() {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         })
-        if (response) alert("Event deleted")
+        //if (response) alert("Event deleted")
+        return response.data;
     } catch (err) {
         console.error(err);
     }
