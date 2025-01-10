@@ -1,29 +1,33 @@
-import { useState } from "react";
-import { createEvent } from "../api/eventsAPI"; // for API funciton call
+import { useRef } from "react";
+import { createEvent } from "../api/eventsAPI"; // for API function call
 
 const EventCreate = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    date: "",
-    location: "",
-    description: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const titleRef = useRef(null);
+  const dateRef = useRef(null);
+  const locationRef = useRef(null);
+  const descriptionRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Collect data from refs
+    const formData = {
+      title: titleRef.current.value,
+      date: dateRef.current.value,
+      location: locationRef.current.value,
+      description: descriptionRef.current.value,
+    };
+
     try {
-      const result = await createEvent(formData); // call API function
+      const result = await createEvent(formData); // Call API function
       alert("Event created successfully!");
       console.log(result); // Print the result
-      setFormData({ title: "", date: "", location: "", description: "" }); // delete all field
+
+      // Clear input fields
+      titleRef.current.value = "";
+      dateRef.current.value = "";
+      locationRef.current.value = "";
+      descriptionRef.current.value = "";
     } catch (error) {
       console.error("Error creating event:", error);
     }
@@ -40,8 +44,7 @@ const EventCreate = () => {
               id="title"
               name="title"
               type="text"
-              value={formData.title}
-              onChange={handleChange}
+              ref={titleRef}
               className="w-full p-2 border rounded text-gray-800 font-medium"
             />
           </div>
@@ -51,8 +54,7 @@ const EventCreate = () => {
               id="date"
               name="date"
               type="datetime-local"
-              value={formData.date}
-              onChange={handleChange}
+              ref={dateRef}
               className="w-full p-2 border rounded text-gray-800 font-medium"
             />
           </div>
@@ -62,8 +64,7 @@ const EventCreate = () => {
               id="location"
               name="location"
               type="text"
-              value={formData.location}
-              onChange={handleChange}
+              ref={locationRef}
               className="w-full p-2 border rounded text-gray-800 font-medium"
             />
           </div>
@@ -73,8 +74,7 @@ const EventCreate = () => {
               id="description"
               name="description"
               type="text"
-              value={formData.description}
-              onChange={handleChange}
+              ref={descriptionRef}
               className="w-full p-2 border rounded text-gray-800 font-medium"
             />
           </div>
