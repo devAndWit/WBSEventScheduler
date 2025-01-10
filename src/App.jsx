@@ -12,7 +12,6 @@ import ContentContainer from "./components/ContentContainer.jsx";
 
 function App() {
   const { isAuthenticated } = useAuth();
-
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
