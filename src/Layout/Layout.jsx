@@ -1,17 +1,18 @@
 import ContentContainer from "../components/ContentContainer.jsx";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import {Outlet} from "react-router-dom";
 
-const Home = () => {
+const Layout = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col" >
       <Header />
-
-      <ContentContainer />
-
+        <ContentContainer>
+            <Outlet/>
+        </ContentContainer>
       <Footer />
     </div>
   );
 };
 
-export default Home;
+export default Layout;
