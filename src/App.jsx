@@ -28,7 +28,7 @@ function App() {
           />
           <Route
             path="eventcard/:eventId"
-            element={!isAuthenticated ? <EventsList /> : <EventDetail />}
+            element={<EventDetail />}
           />
           <Route
             path="eventcreate"
