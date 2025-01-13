@@ -10,8 +10,8 @@ const EventDetail = () => {
   const {eventId} = useParams();
   const navigate = useNavigate();
 
-  const [eventDetails, setEventDetails] = useState({});
-  const [userProfile, setUserProfile] = useState({})
+  const [eventDetails, setEventDetails] = useState("");
+  const [userProfile, setUserProfile] = useState("")
 
   const [isLoading, setIsLoading] = useState(false);
   const [isOwner, setIsOwner] = useState(false);
@@ -43,14 +43,15 @@ const EventDetail = () => {
 
     fetchEvent();
     fetchUserProfile();
-    console.log(eventDetails.organizerId)
-    console.log(userProfile.id)
-
-    if (eventDetails.organizerId === userProfile.id) {
-      setIsOwner(true)}
-
-
   }, []);
+
+  useEffect(() => {
+    if (eventDetails && userProfile) {
+      if (eventDetails.organizerId === userProfile.id) {
+        setIsOwner(true);
+      }
+    }
+  }, [eventDetails, userProfile]);
 
   function handleOnClickUpdate() {
     setEvent(eventDetails);
