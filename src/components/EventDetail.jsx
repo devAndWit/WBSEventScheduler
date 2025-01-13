@@ -4,9 +4,11 @@ import {deleteEventById, getEventById} from "../api/eventsAPI.js";
 import { Spinner } from "./Spinner.jsx";
 import {getUserProfile} from "../api/authAPI.js";
 import {useEvent} from "../context/EventProvider.jsx";
+import {useAuth} from "../context/AuthProvider.jsx";
 
 const EventDetail = () => {
   const {setEvent} = useEvent();
+  const {isAuthenticated} = useAuth();
   const {eventId} = useParams();
   const navigate = useNavigate();
 
@@ -42,7 +44,10 @@ const EventDetail = () => {
     }
 
     fetchEvent();
-    fetchUserProfile();
+
+    if(isAuthenticated) {
+      fetchUserProfile();
+    }
   }, []);
 
   useEffect(() => {
