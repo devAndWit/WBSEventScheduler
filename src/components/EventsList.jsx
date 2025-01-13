@@ -14,7 +14,6 @@ const EventContainer = () => {
       try {
         setIsLoading(true);
         const data = await getUpcomingEventsList(); // Default: page 1, limit 10
-        console.log(`Upcoming Events ${data}`);
         setEvents(data);
       } catch (err) {
         setError(err.message);
@@ -25,8 +24,6 @@ const EventContainer = () => {
 
     fetchEvents();
   }, []);
-
-  console.log(events);
 
   return isLoading ? (
     <Spinner />
