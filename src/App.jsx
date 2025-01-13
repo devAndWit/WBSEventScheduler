@@ -7,6 +7,7 @@ import EventCreate from "./components/EventCreate.jsx";
 import EventDetail from "./components/EventDetail.jsx";
 import EventsList from "./components/EventsList.jsx";
 import Layout from "./Layout/Layout.jsx";
+import {EventUpdate} from "./components/EventUpdate.jsx";
 
 function App() {
     const {isAuthenticated} = useAuth();
@@ -31,6 +32,10 @@ function App() {
                         path="eventcreate"
                         element={!isAuthenticated ? <EventsList/> : <EventCreate/>}
                     />
+                    <Route
+                        path="eventupdate/:eventId"
+                        element={!isAuthenticated ? <EventsList/> : <EventUpdate/>}
+                        />
                     {/* 404 Not Found */}
                     <Route path="*" element={<NotFound/>}/>
                 </Route>

@@ -27,6 +27,9 @@ const SignIn = () => {
       } catch (error) {
         console.error("Login failed:", error);
         alert("Login failed. Please check your credentials and try again.");
+      } finally {
+        emailRef.current.value = "";
+        passwordRef.current.value = "";
       }
     }
   };
